@@ -1,4 +1,4 @@
-package xt.candy.Utils;
+package xt.candy.net;
 
 import android.support.annotation.NonNull;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -13,8 +13,10 @@ import java.util.TreeMap;
 //网路的工具类
 public class NetUtil {
 
+
     public static String LINE_MSG = "http://apps.eshimin.com/traffic/gjc/getBusBase";//获取线路
     public static String STOP_MSG = "http://apps.eshimin.com/traffic/gjc/getBusStop";//获取线路站点
+    public static String TIME_MSG = "http://apps.eshimin.com/traffic/gjc/getArriveBase";//时间信息
    // "http://apps.eshimin.com/traffic/gjc/getArriveBase
     // ?name=" + DisplayMessageActivity.this.line_name +
     // &lineid=" + DisplayMessageActivity.this.line_id +

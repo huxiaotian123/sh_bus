@@ -5,14 +5,16 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
-import okhttp3.Call;
+
 import xt.candy.R;
+import xt.candy.Utils.BusUtils;
 import xt.candy.Utils.TipsUtils;
 import xt.candy.base.BaseActivity;
 import xt.candy.base.BusStringCallback;
-import xt.candy.Utils.NetUtil;
+import xt.candy.net.NetUtil;
 import xt.candy.model.LineMsgModel;
 import xt.candy.model.ModelManger;
+import xt.candy.view.TopView;
 
 import java.util.TreeMap;
 
@@ -20,11 +22,15 @@ public class MainActivity extends BaseActivity {
 
     private EditText mEtInput;
     private View rootView;
+    private TopView mTopView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mTopView = (TopView) findViewById(R.id.topview);
+        mTopView.getIvLeft().setVisibility(View.INVISIBLE);
+        mTopView.setTitle("公交准点查询");
         rootView = findViewById(R.id.root_view);
         mEtInput = (EditText) findViewById(R.id.et_input);
         findViewById(R.id.tv_search).setOnClickListener(new View.OnClickListener() {
@@ -42,7 +48,7 @@ public class MainActivity extends BaseActivity {
 
         if (!TextUtils.isEmpty(lineName)) {
             TreeMap params  = new TreeMap();
-            params.put("name",  checLineName(lineName));
+            params.put("name",  BusUtils.checLineName(lineName));
              NetUtil.doGet(NetUtil.LINE_MSG, params, new BusStringCallback() {
                  @Override
                  public void onBusResponse(String response, int id) {
@@ -50,8 +56,7 @@ public class MainActivity extends BaseActivity {
                      if(null == model){
                          TipsUtils.showSnackBar(rootView,"请输入正确的线路");
                      }else{
-                         getStopMsg(model);
-
+                         LineTimeActivity.showActivity(model,MainActivity.this);
                      }
                  }
 
@@ -59,31 +64,4 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-
-    //手动添加路
-    @NonNull
-    private String checLineName(String lineName) {
-        if(TextUtils.isEmpty(lineName)){
-            return "";
-        }
-        if (!lineName.contains("路")) {
-            lineName += "路";
-        }
-        return lineName;
-    }
-
-    private void getStopMsg(LineMsgModel model) {
-        TreeMap params  = new TreeMap();
-        params.put("name",checLineName(model.line_name));
-        params.put("lineid",model.line_id);
-        NetUtil.doGet(  NetUtil.STOP_MSG, NetUtil.getStopMsgHeader(), params,new BusStringCallback(){
-
-            @Override
-            public void onBusResponse(String response, int id) {
-
-            }
-
-
-        });
-    }
 }
