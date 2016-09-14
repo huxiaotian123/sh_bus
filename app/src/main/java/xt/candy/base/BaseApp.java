@@ -1,6 +1,8 @@
 package xt.candy.base;
 
 import android.app.Application;
+import android.content.Context;
+
 import com.zhy.http.okhttp.OkHttpUtils;
 import okhttp3.OkHttpClient;
 
@@ -11,10 +13,12 @@ import java.util.concurrent.TimeUnit;
  */
 public class BaseApp extends Application {
 
+    public static Application app;
+
     @Override
     public void onCreate() {
         super.onCreate();
-
+        app = this;
 
         //okhttp
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
@@ -27,4 +31,9 @@ public class BaseApp extends Application {
         OkHttpUtils.initClient(okHttpClient);
 
     }
+
+    public static Context getApp(){
+        return app;
+    }
+
 }
