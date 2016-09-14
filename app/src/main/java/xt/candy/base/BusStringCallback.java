@@ -10,7 +10,7 @@ import xt.candy.Utils.TipsUtils;
 public abstract class BusStringCallback extends StringCallback {
     @Override
     public  void onError(Call call, Exception e, int id){
-        TipsUtils.showToast("网络异常");
+     //   TipsUtils.showToast("网络异常");
         onBusError(call,e,id);
     };
 

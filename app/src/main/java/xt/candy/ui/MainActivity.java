@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
+import okhttp3.Call;
 import xt.candy.R;
 import xt.candy.Utils.BusUtils;
 import xt.candy.Utils.TipsUtils;
@@ -45,8 +46,8 @@ public class MainActivity extends BaseActivity {
     //开始搜索
     private void doSearch() {
         String lineName = mEtInput.getText().toString();
-
         if (!TextUtils.isEmpty(lineName)) {
+            showLoadingView();
             TreeMap params  = new TreeMap();
             params.put("name",  BusUtils.checLineName(lineName));
              NetUtil.doGet(NetUtil.LINE_MSG, params, new BusStringCallback() {
@@ -58,8 +59,14 @@ public class MainActivity extends BaseActivity {
                      }else{
                          LineTimeActivity.showActivity(model,MainActivity.this);
                      }
+                     hideLoadingView();
                  }
 
+                 @Override
+                 public void onBusError(Call call, Exception e, int id) {
+                     TipsUtils.showSnackBar(rootView,"请输入正确的线路");
+                     hideLoadingView();
+                 }
              });
         }
     }

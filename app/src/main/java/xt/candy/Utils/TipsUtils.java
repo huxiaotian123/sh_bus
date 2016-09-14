@@ -1,14 +1,13 @@
 package xt.candy.Utils;
 
 import android.graphics.Color;
-import android.support.design.widget.Snackbar;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Toast;
 
 import com.androidadvance.topsnackbar.TSnackbar;
 
-import xt.candy.base.BaseApp;
+import xt.candy.app.BaseApp;
 
 
 /**
@@ -21,6 +20,13 @@ public class TipsUtils {
 //                .setActionTextColor(Color.BLUE)
 //                .setDuration(4000).show();
         TSnackbar.make(rootlayout,str,TSnackbar.LENGTH_SHORT).setActionTextColor(Color.BLUE).show();
+    }
+
+    public static  void  showLongSnackBar(View rootlayout ,String str){
+//         Snackbar.make(rootlayout, str, Snackbar.LENGTH_SHORT)
+//                .setActionTextColor(Color.BLUE)
+//                .setDuration(4000).show();
+        TSnackbar.make(rootlayout,str,TSnackbar.LENGTH_LONG).setActionTextColor(Color.BLUE).show();
     }
 
     public static void  showToast(String str){

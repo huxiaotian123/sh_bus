@@ -7,8 +7,8 @@ android {
         applicationId "xt.candy"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        versionCode 1000
+        versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -30,4 +30,5 @@ dependencies {
     compile 'com.android.support:design:23.2.0'
     compile 'com.androidadvance:topsnackbar:1.1.1'
     compile 'com.google.code.gson:gson:2.7'
+    compile 'com.wang.avi:library:2.1.3'
 }

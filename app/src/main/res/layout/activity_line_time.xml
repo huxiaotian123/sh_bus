@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
     <xt.candy.view.TopView
         android:id="@+id/topview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-
+    <xt.candy.view.LineMsgView
+        android:id="@+id/line0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <View
+        style="@style/line_blue_horizontal"/>
+    <xt.candy.view.LineMsgView
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <View
+        style="@style/line_blue_horizontal"/>
+    <ListView
+        android:id="@+id/select_dialog_listview"
+        android:layout_width="match_parent"
+        android:divider="@color/blue"
+        android:dividerHeight="1px"
+        android:scrollbars="none"
+        android:layout_height="match_parent"/>
 </LinearLayout>

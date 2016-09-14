@@ -1,4 +1,4 @@
-package xt.candy.base;
+package xt.candy.app;
 
 import android.app.Application;
 import android.content.Context;
