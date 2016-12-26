@@ -2,6 +2,7 @@ package xt.candy.Utils;
 
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
+import android.widget.Toast;
 
 /**
  * 项目名称：sh_bus
@@ -16,9 +17,15 @@ public class BusUtils {
         if(TextUtils.isEmpty(lineName)){
             return "";
         }
-        if (!lineName.contains("路")) {
-            lineName += "路";
-        }
+       if(isNum(lineName)){
+           lineName += "路";
+       }
         return lineName;
+    }
+
+
+    public static boolean isNum(String str){
+        String zhengZe = "^[0-9]*$";
+        return str.matches(zhengZe);
     }
 }
